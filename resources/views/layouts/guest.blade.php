@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="d-flex justify-content-center align-items-center gap-2 pt-3 pb-3">
-        <span class="fs-1"><i class="fa-solid fa-store"></i></span>
+        <span class="fs-1"><i class="fa-solid fa-bag-shopping"></i></span>
         <h1>My Store</h1>
     </header>
     <main>
