@@ -42,8 +42,8 @@
                                 <hr class="dropdown-divider">
                             </li>
                             @can('access-admin')
-                                <li><a class="dropdown-item" href="#">
-                                        <i class="fa-solid fa-table-cells-large me-2"></i></i>Admin panel
+                                <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                        <i class="fa-solid fa-table-cells-large me-2"></i>Admin panel
                                     </a>
                                 </li>    
                             @endcan
