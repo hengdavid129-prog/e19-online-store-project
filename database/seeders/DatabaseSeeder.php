@@ -18,13 +18,17 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         $this->call([
             RoleSeeder::class
+        ]);
+
+        User::factory()->create([
+            'role_id' => Role::where('name', 'admin')->value('id'),
+            'firstname' => 'Heng',
+            'lastname' => 'David',
+            'email' => 'hengdavid@gmail.com',
+            'phone' => '012345678',
+            'password' => '1234567890'
         ]);
     }
 }

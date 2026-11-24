@@ -9,13 +9,24 @@
     <form action="{{ route('store-register') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="name" class="form-label">Full Name</label>
+            <label for="firstname" class="form-label">First Name</label>
             <input 
                 type="text" 
-                class="form-control @error('name') is-invalid @enderror"
-                name="name"
-                value="{{ old('name') }}">
-            @error('name')
+                class="form-control @error('fistname') is-invalid @enderror"
+                name="firstname"
+                value="{{ old('firstname') }}">
+            @error('firstname')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="lastname" class="form-label">Last Name</label>
+            <input 
+                type="text" 
+                class="form-control @error('lastname') is-invalid @enderror"
+                name="lastname"
+                value="{{ old('lastname') }}">
+            @error('lastname')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>

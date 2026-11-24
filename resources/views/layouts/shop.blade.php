@@ -34,7 +34,7 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-item">
                                 <h6>
-                                    {{ auth()->user()->name }} <br>
+                                    {{ auth()->user()->firstname }} {{ auth()->user()->lastname }} <br>
                                     <span class="text-dark text-opacity-50">{{ auth()->user()->email }}</span>
                                 </h6>
                             </li>

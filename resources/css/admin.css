@@ -464,3 +464,22 @@ body {
     display: none;
   }
 }
+
+/* Bootstrap Tweaks - make bootstrap match the sidebar */
+.btn-primary {
+    --bs-btn-bg: var(--accent);
+    --bs-btn-border-color: var(--accent);
+    --bs-btn-hover-bg: #5A67F0;
+    --bs-btn-hover-border-color: #5A67F0;
+    --bs-btn-active-bg: #4C59E0;
+    --bs-btn-active-border-color: #4C59E0;
+}
+
+.pf-menu hr {
+    opacity: 1;
+}
+
+/* Page Content */
+.page {
+    padding: 24px;
+}
