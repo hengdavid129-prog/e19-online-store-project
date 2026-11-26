@@ -15,8 +15,8 @@
             <i class="fa-solid fa-gauge"></i>
             <span class="label">Dashboard</span>
         </a>
-        <a href="{{ route('admin.category') }}"
-            class="nav-item {{ request()->routeIs('admin.category') ? 'active' : '' }}" title="Category">
+        <a href="{{ route('admin.category.index') }}"
+            class="nav-item {{ request()->routeIs('admin.category.*') ? 'active' : '' }}" title="Category">
             <i class="fa-solid fa-layer-group"></i>
             <span class="label">Category</span>
         </a>

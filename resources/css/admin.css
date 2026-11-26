@@ -9,7 +9,7 @@
   --sb-muted: #a6abb6;
   --sb-label: #8c929e;
   --sb-hover: #1e222a;
-  --sb-active: #232836;
+  --sb-active: #393c42;
   --sb-badge: #2a2f3a;
   --accent: #0d6efd;
 
@@ -482,4 +482,13 @@ body {
 /* Page Content */
 .page {
     padding: 24px;
+}
+
+/* Toast notifications - SweetAlert2 defaults, just a shorter box */
+.swal2-popup.swal2-toast {
+  padding: 0.5em 1em;
+}
+
+.swal2-popup.swal2-toast .swal2-title {
+  margin: 0 1em;
 }

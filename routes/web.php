@@ -22,7 +22,10 @@ Route::middleware(['auth', 'can:access-admin'])->prefix('admin')->name('admin.')
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('category')->group(function () {
-        Route::get('/', [CategoryController::class, 'index'])->name('category');
+        Route::get('/', [CategoryController::class, 'index'])->name('category.index');
+        Route::post('/', [CategoryController::class, 'store'])->name('category.store');
+        Route::put('/{category}', [CategoryController::class, 'update'])->name('category.update');
+        Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
     });
 
     Route::prefix('product')->group(function () {
