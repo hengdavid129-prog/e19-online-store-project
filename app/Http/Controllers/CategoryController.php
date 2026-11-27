@@ -5,15 +5,34 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Exception;
+use Illuminate\Http\Request;
 use Storage;
 
 class CategoryController extends Controller
 {
-    public function index() {
-        $categories = Category::orderByDesc('created_at')->get();
+    public function index(Request $request) {
+        $search = trim((string) $request->input('search'));
+        $status = $request->input('status');
+
+        $categories = Category::query()
+            ->when($search !== '', function ($query) use ($search) {
+                $term = '%' . addcslashes($search, '%_\\') . '%';
+
+                $query->where(function ($query) use ($term) {
+                    $query->where('name', 'like', $term)
+                        ->orWhere('slug', 'like', $term);
+                });
+            })
+            ->when($status === 'active', fn ($query) => $query->where('is_active', true))
+            ->when($status === 'inactive', fn($query) => $query->where('is_active', false))
+            ->orderByDesc('created_at')
+            ->paginate(10)
+            ->withQueryString();
 
         return view('admin.category.index', [
-            'categories' => $categories
+            'categories' => $categories,
+            'search' => $search,
+            'status' => $status,
         ]);
     }
 
@@ -31,7 +50,7 @@ class CategoryController extends Controller
             return back()->with('error', 'Failed to create category.');
         }
 
-        return redirect()->route('admin.category.index')->with('message', 'Create Category Successfully');
+        return back()->with('message', 'Create Category Successfully');
     }
 
     public function update(CategoryRequest $request, Category $category) {
@@ -52,7 +71,7 @@ class CategoryController extends Controller
             return back()->with('error', 'Failed to update category.');
         }
 
-        return redirect()->route('admin.category.index')->with('message', 'Category updated successfully.');
+        return back()->with('message', 'Category updated successfully.');
     }
 
     public function destroy(Category $category) {
@@ -66,6 +85,6 @@ class CategoryController extends Controller
             return back()->with('error', 'Failed to delete category.');
         }
 
-        return redirect()->route('admin.category.index')->with('message', 'Category deleted successfully.');
+        return back()->with('message', 'Category deleted successfully.');
     }
 }

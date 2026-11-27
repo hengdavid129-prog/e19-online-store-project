@@ -26,14 +26,32 @@
 
 <div class="row">
     <div class="col-md-12 mb-3">
-        <div class="d-flex justify-content-end align-items-center">
+        <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap">
+            <form method="GET" action="{{ route('admin.category.index') }}" class="d-flex gap-2 flex-wrap">
+                <input type="search" name="search" value="{{ $search }}" class="form-control" style="width: 16rem;" placeholder="Search name or slug...">
+
+                <select name="status" class="form-select" style="width: 10rem;">
+                    <option value="">All status</option>
+                    <option value="active" @selected($status === 'active')>Active</option>
+                    <option value="inactive" @selected($status == 'inactive')>Inactive</option>
+                </select>
+
+                <button type="submit" class="btn btn-outline-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+
+                @if ($search !== '' || $status)
+                    <a href="{{ route('admin.category.index') }}" class="btn btn-outline-secondary">Reset</a>
+                @endif
+            </form>
+
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCategoryModal">Add New</button>
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-striped">
+        <table class="table table-bordered table-striped table-hover">
             <tr>
                 <th class="text-center">No</th>
                 <th class="text-center">Name</th>
@@ -47,7 +65,7 @@
             </tr>
             @forelse ($categories as $category)
                 <tr>
-                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td class="text-center">{{ $categories->firstItem() + $loop->index }}</td>
                     <td class="text-center">{{ $category->name }}</td>
                     <td class="text-center">{{ $category->slug }}</td>
                     <td class="text-center">{{ $category->description }}</td>
@@ -77,10 +95,19 @@
                 </tr>  
             @empty
                 <tr>
-                    <td colspan="9" class="text-center">No categories yet.</td>
+                    <td colspan="9" class="text-center">
+                        @if ($search !== '' || $status)
+                            No categories match your search.
+                        @else
+                            No category yet.
+                        @endif
+                    </td>
                 </tr>
             @endforelse
         </table>
+        @if ($categories->hasPages())
+            {{ $categories->links() }}
+        @endif
     </div>
 </div>
 
