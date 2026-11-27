@@ -27,7 +27,6 @@
             <div class="page container-fluid">
                 @yield('content')
             </div>
-            
         </main>
     </div>
 

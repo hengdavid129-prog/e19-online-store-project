@@ -19,16 +19,10 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
-            RoleSeeder::class
-        ]);
-
-        User::factory()->create([
-            'role_id' => Role::where('name', 'admin')->value('id'),
-            'firstname' => 'Heng',
-            'lastname' => 'David',
-            'email' => 'hengdavid@gmail.com',
-            'phone' => '012345678',
-            'password' => '1234567890'
+            RoleSeeder::class,
+            UserSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class
         ]);
     }
 }

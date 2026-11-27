@@ -20,8 +20,8 @@
             <i class="fa-solid fa-layer-group"></i>
             <span class="label">Category</span>
         </a>
-        <a href="{{ route('admin.product') }}"
-            class="nav-item {{ request()->routeIs('admin.product') ? 'active' : '' }}" title="Product">
+        <a href="{{ route('admin.product.index') }}"
+            class="nav-item {{ request()->routeIs('admin.product.*') ? 'active' : '' }}" title="Product">
             <i class="fa-solid fa-box-open"></i>
             <span class="label">Product</span>
         </a>

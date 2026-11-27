@@ -475,6 +475,12 @@ body {
     --bs-btn-active-border-color: #4C59E0;
 }
 
+/* Bootstrap hardcodes `padding: .5rem .5rem` here, so match its selector */
+
+.table > :not(caption) > * > * {
+  padding: 0.6rem 0.85rem;;
+}
+
 .pf-menu hr {
     opacity: 1;
 }

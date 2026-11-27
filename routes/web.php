@@ -29,6 +29,9 @@ Route::middleware(['auth', 'can:access-admin'])->prefix('admin')->name('admin.')
     });
 
     Route::prefix('product')->group(function () {
-        Route::get('/', [ProductController::class, 'index'])->name('product');
+        Route::get('/', [ProductController::class, 'index'])->name('product.index');
+        Route::post('/', [ProductController::class, 'store'])->name('product.store');
+        Route::put('/{product}', [ProductController::class, 'update'])->name('product.update');
+        Route::delete('/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
     });
 });

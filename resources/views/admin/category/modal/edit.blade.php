@@ -91,5 +91,11 @@
         })
 
         if (editId.value) setAction(editId.value);
+
+        editModal.addEventListener('hidden.bs.modal', () => {
+            document.getElementById('edit_image_path').value = '';
+            editFrom.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
+            editFrom.querySelectorAll('.text-danger').forEach((el) => el.remove());
+        })
     </script>
 @endpush
