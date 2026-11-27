@@ -27,6 +27,8 @@
             <div class="page container-fluid">
                 @yield('content')
             </div>
+
+            @include('layouts.admin.master_footer')
         </main>
     </div>
 
