@@ -89,9 +89,16 @@
                                 data-image="{{ $category->image_path ? asset('storage/' . $category->image_path) : '' }}">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button type="button" class="bg-danger btn-action" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal" data-id="{{ $category->id }}" data-name="{{ $category->name }}">
-                                <i class="fas fa-trash"></i>
-                            </button>
+                            @if ($category->products_count > 0)
+                                <span class="badge text-bg-secondary">{{ $category->products_count }} products</span>
+                                <button class="btn btn-sm btn-outline-danger" disabled>
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            @else
+                                <button type="button" class="bg-danger btn-action" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal" data-id="{{ $category->id }}" data-name="{{ $category->name }}">
+                                    <i class="fas fa-trash"></i>
+                                </button> 
+                            @endif
                         </td>
                     </tr>  
                 @empty

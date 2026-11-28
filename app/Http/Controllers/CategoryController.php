@@ -15,6 +15,7 @@ class CategoryController extends Controller
         $status = $request->input('status');
 
         $categories = Category::query()
+            ->withCount('products')
             ->when($search !== '', function ($query) use ($search) {
                 $term = '%' . addcslashes($search, '%_\\') . '%';
 
@@ -75,6 +76,9 @@ class CategoryController extends Controller
     }
 
     public function destroy(Category $category) {
+        if ($category->products()->exists()) {
+            return back()->with('error', 'Cannot delete a category that still has products.');
+        }
         try {
             if ($category->image_path) {
                 Storage::disk('public')->delete($category->image_path);
